@@ -1,5 +1,8 @@
 name: Build and Deploy Example
-on: [push]
+on:
+  push:
+    branches:
+      - init
 permissions:
   contents: write
   pages: write
