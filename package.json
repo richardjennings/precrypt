@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "webpack": "^5.91.0",
+    "webpack-obfuscator": "^3.5.1"
+  },
+  "scripts": {
+    "build-dev": "webpack --mode=development",
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "webpack-cli": "^5.1.4"
+  }
+}
