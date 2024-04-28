@@ -15,6 +15,9 @@ var indexTemplate string
 //go:embed dist/main.js
 var loaderJs string
 
+//go:embed dist/style.css
+var loaderCss string
+
 //go:embed example/index.html
 var exampleHtml []byte
 
@@ -26,7 +29,7 @@ var exampleJs []byte
 
 func main() {
 	key := os.Args[1]
-	htmlEnc, err := precrypt.Encrypt(exampleHtml, []byte(key));
+	htmlEnc, err := precrypt.Encrypt(exampleHtml, []byte(key))
 	e(err)
 	cssEnc, err := precrypt.Encrypt(exampleCss, []byte(key))
 	e(err)
@@ -39,7 +42,7 @@ func main() {
 		"c": []string{string(jsEnc)},
 	})
 	e(err)
-	err = tmpl.Execute(os.Stdout, map[string]interface{}{"data": string(data), "js": string(loaderJs)})
+	err = tmpl.Execute(os.Stdout, map[string]interface{}{"data": string(data), "js": loaderJs, "css": loaderCss})
 	e(err)
 }
 
