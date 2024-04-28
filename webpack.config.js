@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const JavaScriptObfuscator = require('webpack-obfuscator');
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
     entry: './src/loader.js',
@@ -14,6 +15,11 @@ module.exports = {
             //debugProtection: true,
             disableConsoleOutput: true,
             //selfDefending: true,
-        })
+        }),
+        new CopyPlugin({
+            patterns: [
+                { from: "src/style.css", to: "style.css" },
+            ],
+        }),
     ]
 }
