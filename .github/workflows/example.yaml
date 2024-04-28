@@ -2,7 +2,7 @@ name: Build and Deploy Example
 on:
   push:
     branches:
-      - init
+      - main
 permissions:
   contents: write
   pages: write
