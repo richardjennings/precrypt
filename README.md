@@ -9,9 +9,7 @@ An example is available on [Github Pages](https://richardjennings.github.io/prec
 ## CLI Usage
 
 ```
-make build-deps
-go run main.go passphrasewhichneedstobe32bytes! > index.html
-open index.html
+precrypt --html example/index.html --css example/style.css --js example/index.js --key passphrasewhichneedstobe32bytes! -o index.html
 ```
 
 ## Library Usage

@@ -7,16 +7,16 @@ module.exports = {
     entry: './src/loader.js',
     output: {
         clean: true,
-        path: path.resolve(__dirname, 'precrypt/dist'),
+        path: path.resolve(__dirname, 'pkg/precrypt/dist'),
     },
     plugins: [
         new JavaScriptObfuscator ({
             stringArray: true,
             stringArrayEncoding: ['rc4'],
             rotateStringArray: true,
-            //debugProtection: true,
+            debugProtection: true,
             disableConsoleOutput: true,
-            //selfDefending: true,
+            selfDefending: true,
         }),
         new CopyPlugin({
             patterns: [

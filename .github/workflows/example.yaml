@@ -16,10 +16,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install and Build 🔧
-        run: |
-          make build
-          mkdir -p build
-          ./precrypt "passphrasewhichneedstobe32bytes!" > build/index.html
+        run: make build
+
+      - name: generate example
+        run: mkdir build && ./main --html example/index.html --css example/style.css --js example/index.js --key passphrasewhichneedstobe32bytes! build/index.html
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
