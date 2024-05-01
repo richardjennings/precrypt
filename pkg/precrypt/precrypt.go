@@ -6,7 +6,6 @@ import (
 	"crypto/rand"
 	_ "embed"
 	"encoding/base64"
-	"encoding/hex"
 	"encoding/json"
 	"errors"
 	"io"
@@ -36,12 +35,8 @@ type RenderOptions struct {
 
 func Render(opts RenderOptions) error {
 	var err error
-	if hex.DecodedLen(len(opts.Key)) != 32 {
+	if len(opts.Key) != 32 {
 		return errors.New("invalid key length")
-	}
-	key := make([]byte, 32)
-	if _, err := hex.Decode(key, opts.Key); err != nil {
-		return err
 	}
 
 	if opts.LoaderJS != "" {
@@ -63,15 +58,15 @@ func Render(opts RenderOptions) error {
 		}
 	}
 	tmpl := template.Must(template.New("page").Parse(string(loaderHTML)))
-	html, err := encryptFiles(opts.HtmlFiles, key)
+	html, err := encryptFiles(opts.HtmlFiles, opts.Key)
 	if err != nil {
 		return err
 	}
-	css, err := encryptFiles(opts.CssFiles, key)
+	css, err := encryptFiles(opts.CssFiles, opts.Key)
 	if err != nil {
 		return err
 	}
-	js, err := encryptFiles(opts.JsFiles, key)
+	js, err := encryptFiles(opts.JsFiles, opts.Key)
 	if err != nil {
 		return err
 	}
