@@ -19,7 +19,7 @@ jobs:
         run: make build
 
       - name: generate example
-        run: mkdir build && ./main --html example/index.html --css example/style.css --js example/index.js --key passphrasewhichneedstobe32bytes! build/index.html
+        run: mkdir build && ./precrypt --html example/index.html --css example/style.css --js example/index.js --key passphrasewhichneedstobe32bytes! build/index.html
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
