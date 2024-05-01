@@ -1,8 +1,15 @@
+
+
 async function de(txt) {
-    const passphrase = document.getElementById("password").value
+    const fromHexString = (hexString) =>
+        Uint8Array.from(hexString.match(/.{1,2}/g).map((byte) => parseInt(byte, 16)));
+
+    const passphrase = fromHexString(document.getElementById("password").value)
     const raw = Uint8Array.from(atob(txt), (m) => m.codePointAt(0));
-    return new TextDecoder().decode(await window.crypto.subtle.decrypt({name: 'AES-GCM', iv: raw.slice(0, 12),}, await window.crypto.subtle.importKey("raw", new TextEncoder().encode(passphrase), {"name": "AES-GCM"}, false, ["encrypt", "decrypt"]), raw.slice(12)))
+    return new TextDecoder().decode(await window.crypto.subtle.decrypt({name: 'AES-GCM', iv: raw.slice(0, 12),}, await window.crypto.subtle.importKey("raw", passphrase, {"name": "AES-GCM"}, false, ["encrypt", "decrypt"]), raw.slice(12)))
 }
+
+
 
 async function load() {
     let promises = []
