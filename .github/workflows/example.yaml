@@ -1,4 +1,4 @@
-name: Build and Deploy Example
+name: Example
 on:
   push:
     branches:
@@ -15,10 +15,10 @@ jobs:
       - name: Checkout 🛎
         uses: actions/checkout@v4
 
-      - name: Install and Build 🔧
+      - name: Make Build
         run: make build
 
-      - name: generate example
+      - name: Generate Example
         run: mkdir build && ./precrypt --html example/index.html --css example/style.css --js example/index.js --key 329625b9767075c799e90499c59f4e775c0c0ca8c8320b99fc485ba68add025b build/index.html
 
       - name: Deploy 🚀
