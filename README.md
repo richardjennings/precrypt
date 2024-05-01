@@ -3,17 +3,27 @@
 PreCrypt generates a HTML page which can self load embedded AES GCM encrypted HTML, CSS, Javascript when a correct 
 passcode is entered.
 
-The demo example is available on [Github Pages](https://richardjennings.github.io/precrypt/).
+An example is available on [Github Pages](https://richardjennings.github.io/precrypt/).
 
-## Status
 
-Work in progress currently only supporting embedding content from the `example` directory.
-
-## Example
+## CLI Usage
 
 ```
+make build-deps
 go run main.go passphrasewhichneedstobe32bytes! > index.html
 open index.html
 ```
+
+## Library Usage
+
+```
+key := precrypt.Render(precrypt.RenderOptions{
+    HtmlFiles:  []string{"example/index.html"},
+    CssFiles:   []string{"example/style.css"},
+    JsFiles:    []string{"example/index.js"},
+    Out:        os.Stdout,
+}
+```
+
 
 

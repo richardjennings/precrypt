@@ -18,6 +18,15 @@ jobs:
       - name: Install and Build 🔧
         run: |
           make build
+          # html/css/js dist is expected to be committed
+          # rebuild dist folder and fail build if there is a change
+          if [[ -z $(git status -s) ]]
+          then
+            echo "no diff"
+          else
+            git status --porcelain
+            exit 1
+          fi
           mkdir -p build
           ./precrypt "passphrasewhichneedstobe32bytes!" > build/index.html
 

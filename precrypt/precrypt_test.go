@@ -8,11 +8,11 @@ import (
 func TestPrecrypt_Encrypt(t *testing.T) {
 	expected := []byte("hello")
 	key := []byte("passphrasewhichneedstobe32bytes!")
-	encrypted, err := Encrypt(expected, key)
+	encrypted, err := encrypt(expected, key)
 	if err != nil {
 		t.Error(err)
 	}
-	actual, err := Decrypt(encrypted, key)
+	actual, err := decrypt(encrypted, key)
 	if err != nil {
 		t.Error(err)
 	}
