@@ -17,13 +17,12 @@ precrypt --html example/index.html --css example/style.css --js example/index.js
 ## Library Usage
 
 ```
-key := precrypt.Render(precrypt.RenderOptions{
+err := precrypt.Render(precrypt.RenderOptions{
     HtmlFiles:  []string{"example/index.html"},
     CssFiles:   []string{"example/style.css"},
     JsFiles:    []string{"example/index.js"},
     Key:        []byte{"passphrasewhichneedstobe32bytes!"},
     Out:        os.Stdout,
-    
 }
 ```
 

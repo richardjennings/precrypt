@@ -46,9 +46,8 @@ var build = &cobra.Command{
 				fmt.Println(err)
 				os.Exit(1)
 			}
-			opts.Key = make([]byte, hex.EncodedLen(len(bytes)))
-			hex.Encode(opts.Key, bytes)
-			fmt.Println(string(opts.Key))
+			opts.Key = bytes
+			fmt.Println(hex.EncodeToString(bytes))
 		}
 		if err := precrypt.Render(opts); err != nil {
 			fmt.Println(err)
@@ -61,7 +60,7 @@ func init() {
 	build.Flags().StringArrayVar(&htmlFiles, "html", []string{}, "--html <file1.html>,<file2.html>")
 	build.Flags().StringArrayVar(&cssFiles, "css", []string{}, "--css <file1.css>,<file2.css>")
 	build.Flags().StringArrayVar(&jsFiles, "js", []string{}, "--js <file1.js>,<file2.js>")
-	build.Flags().StringVar(&key, "key", "", "--key 32byteslong")
+	build.Flags().StringVar(&key, "key", "", "--key hexencoded32bytes")
 }
 
 func Execute() {
