@@ -35,6 +35,7 @@ type RenderOptions struct {
 
 func Render(opts RenderOptions) error {
 	var err error
+
 	if len(opts.Key) != 32 {
 		return errors.New("invalid key length")
 	}
@@ -78,7 +79,7 @@ func Render(opts RenderOptions) error {
 }
 
 func encryptFiles(paths []string, key []byte) ([]string, error) {
-	var ret []string
+	ret := []string{}
 	for _, v := range paths {
 		b, err := encryptFile(v, key)
 		if err != nil {
